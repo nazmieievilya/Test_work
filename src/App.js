@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import { useState } from "react";
+import ListItem from "./components/ListItem.jsx";
+import Control from "./components/Control.jsx";
 function App() {
+  const [state, setState] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="todoList-container">
+      <div className="nav-item">
+        <p>Статус</p>
+        <select>
+          <option></option>
+        </select>
+      </div>
+      <div className="nav-item">
+        <p>Товар</p>
+        <select>
+          <option></option>
+        </select>
+      </div>
+      <div className="nav-item">
+        <p>ID</p>
+        <select>
+          <option></option>
+        </select>
+      </div>
+      <div className="nav-item">
+        <p>Название</p>
+        <select>
+          <option></option>
+        </select>
+      </div>
+
+      <Control />
+
+      <ul className="list">
+        <ListItem />
+      </ul>
     </div>
   );
 }

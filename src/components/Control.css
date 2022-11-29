@@ -1,0 +1,7 @@
+.control {
+  display: flex;
+  flex-direction: column;
+  grid-column: 5 / 6;
+  grid-row: 1;
+  gap: 5px;
+}
