@@ -1,15 +1,15 @@
 .list-item {
   display: grid;
-
   grid-template-columns: 60px 50px 40px 120px 40px;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .toggle-button-container {
   display: flex;
   align-items: center;
   padding: 2px;
-  justify-content: flex-end;
+
   width: 40px;
   border-radius: 9px;
   background-color: #777;
@@ -32,10 +32,16 @@
 .input-product-feild {
   width: 80px;
 }
-
+.input-product-feild {
+  border: none;
+}
 .btn-remove-item {
   margin-left: 10px;
   border: none;
   padding: 0;
   background-color: transparent;
+}
+
+.toggle-on {
+  justify-content: flex-end;
 }
