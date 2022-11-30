@@ -29,10 +29,11 @@
   height: 20px;
   margin: 0 5px;
 }
-.input-product-feild {
-  width: 80px;
+.id {
+  border: none;
 }
 .input-product-feild {
+  width: 80px;
   border: none;
 }
 .btn-remove-item {
