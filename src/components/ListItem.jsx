@@ -3,12 +3,19 @@ import "./ListItem.css";
 import { useRef } from "react";
 import DropDown from "./DropDown.jsx";
 
-const ListItem = ({ itemData, setList, list }) => {
+const ListItem = ({
+  itemData,
+  setList,
+  list,
+  setSelect,
+  select,
+  currentItem,
+}) => {
   const productName = useRef();
   const id = itemData.id;
-  const currentItem = list.map((item) => {
-    if (item.id === id) return item;
-  })[0];
+  // const currentItem = list.map((item) => {
+  //   if (item.id === id) return item;
+  // })[0];
 
   function setIcon(src) {
     if (src) console.log(src);
@@ -34,6 +41,9 @@ const ListItem = ({ itemData, setList, list }) => {
     console.log(isAllowed());
   }
   function changingId(e) {
+    const currentItem = list.map((item) => {
+      if (item.id == e.target.closest(".list-item").dataset.id) return item;
+    })[0];
     if (!isAllowed()) e.target.value = currentItem.productId;
   }
   function changingName(e) {
@@ -63,6 +73,8 @@ const ListItem = ({ itemData, setList, list }) => {
       return item;
     });
     setList(newList);
+
+    setSelect(Array.from(new Set(list.map((item) => item.name))));
     console.log(list);
     e.target.blur();
   }
@@ -73,6 +85,9 @@ const ListItem = ({ itemData, setList, list }) => {
   function handleRemoveItem(e) {
     const id = e.target.closest(".list-item").dataset.id;
     setList(list.filter((item) => item.id !== id));
+
+    setSelect(Array.from(new Set(list.map((item) => item.name))));
+    console.log(select);
   }
   return (
     <li data-id={itemData.id} className="list-item">
