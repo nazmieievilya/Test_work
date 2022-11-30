@@ -1,7 +1,7 @@
 import React from "react";
 import "./ListItem.css";
-import logo from "../content/KyivS.png";
 import { useRef } from "react";
+import DropDown from "./DropDown.jsx";
 
 const ListItem = ({ itemData, setList, list }) => {
   const productName = useRef();
@@ -9,6 +9,10 @@ const ListItem = ({ itemData, setList, list }) => {
   const currentItem = list.map((item) => {
     if (item.id === id) return item;
   })[0];
+
+  function setIcon(src) {
+    if (src) console.log(src);
+  }
   function isAllowed() {
     return list.map((item) => {
       if (item.id === id && item.isMutable) return true;
@@ -91,7 +95,16 @@ const ListItem = ({ itemData, setList, list }) => {
         maxLength="3"
       />
       <div className="product-name">
-        <img className="list-img" src={logo} alt="logo" />
+        <DropDown
+          setList={setList}
+          list={list}
+          setIcon={setIcon}
+          currentItem={currentItem}
+        />
+
+        <div className="img-conteiner">
+          {itemData.icon ? <img src={itemData.icon.src} /> : null}
+        </div>
         <input
           ref={productName}
           className="input-product-feild"

@@ -1,40 +1,78 @@
 .list-item {
   display: grid;
-  grid-template-columns: 60px 50px 40px 120px 40px;
+  grid-template-columns: 60px 50px 40px 130px 40px;
   gap: 10px;
+  padding-left: 5px;
+  cursor: pointer;
   margin-bottom: 10px;
+  border-left: 5px solid transparent;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  transition: all 0.05s;
 }
 
+.list-item:hover {
+  background-color: #cacaca;
+
+  transition: all 0.05s;
+  border-left: 5px solid black;
+}
+.img-selected {
+  opacity: 0.5;
+}
 .toggle-button-container {
   display: flex;
   align-items: center;
   padding: 2px;
-
-  width: 40px;
+  justify-content: flex-end;
+  width: 35px;
   border-radius: 9px;
   background-color: #777;
 }
 .toggle-button {
   display: flex;
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
+  transition: all 0.2s;
   background-color: white;
+  box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.5);
+}
+.toggle-on .toggle-button {
+  transition: all 0.2s;
+  transform: translateX(-17px);
+  background-color: #515151;
 }
 .product-name {
   display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
 }
 .list-img {
   width: 20px;
   height: 20px;
-  margin: 0 5px;
+}
+.list-img-active {
+  opacity: 0.7;
+}
+
+.list-img:hover {
+  opacity: 0.7;
+}
+.img-conteiner {
+  display: flex;
+  width: 14px;
+  height: 14px;
 }
 .id {
   border: none;
+  background-color: transparent;
 }
 .input-product-feild {
   width: 80px;
   border: none;
+  background-color: transparent;
 }
 .btn-remove-item {
   margin-left: 10px;
@@ -43,6 +81,21 @@
   background-color: transparent;
 }
 
-.toggle-on {
-  justify-content: flex-end;
+.dropdown-container {
+  z-index: 10;
+  padding: 17px 17px;
+  display: none;
+  position: absolute;
+  grid-template-columns: repeat(5, 1fr);
+  bottom: -135px;
+  left: -40px;
+  box-shadow: 0 0 20px 1px rgb(0, 0, 0, 0.5);
+  gap: 7px;
+  background: #ffffff;
+  box-shadow: 4px 4px 9px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+}
+
+.product-name:hover .dropdown-container {
+  display: grid;
 }
