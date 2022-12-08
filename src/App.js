@@ -4,11 +4,15 @@ import { useState, useRef } from "react";
 import ListItem from "./components/ListItem.jsx";
 import Control from "./components/Control.jsx";
 import List from "./components/List.jsx";
+import MultiSelect from "./components/MultiSelect.jsx";
+import DropDown from "./components/DropDown.jsx";
 
 function App() {
   const [list, setList] = useState([]);
+  const [filteredList, setfilteredList] = useState([]);
   const [select, setSelect] = useState([]);
   const [selected, setSelected] = useState([]);
+
   const multiSelect = useRef();
   function selectChange(e) {
     e.preventDefault();
@@ -28,6 +32,7 @@ function App() {
       productId: "",
       name: "xxxx",
       isMutable: true,
+      isSelected: false,
     };
     const itemId = newItem.id;
     setList([newItem, ...list]);
@@ -36,9 +41,25 @@ function App() {
     console.log(select);
   }
   function handleRemoveAll() {
+    if (list.some((item) => item.isSelected))
+      return setList(list.filter((item) => !item.isSelected));
     setList([]);
   }
-
+  // styles
+  const multiSelectStyles = {
+    chips: {
+      background: "none",
+      color: "black`",
+    },
+    searchBox: {
+      border: "none",
+      borderBottom: "1px solid black",
+      borderRadius: "0px",
+    },
+    multiselectContainer: {
+      color: "black",
+    },
+  };
   return (
     <div className="todoList-container">
       <div className="nav-item">
@@ -61,11 +82,13 @@ function App() {
       </div>
       <div className="nav-item">
         <p>Название</p>
-        <select>
-          <option>All</option>
-          <option>All</option>
-          <option>All</option>
-        </select>
+        <MultiSelect
+          list={list}
+          selected={selected}
+          filteredList={filteredList}
+          setfilteredList={setfilteredList}
+          setSelected={setSelected}
+        />
       </div>
 
       {/* <select className="nav-item">
@@ -82,9 +105,11 @@ function App() {
       />
       <List
         select={select}
+        selected={selected}
         setSelect={setSelect}
         setList={setList}
         list={list}
+        filteredList={filteredList}
       />
     </div>
   );

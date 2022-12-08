@@ -80,17 +80,43 @@ const ListItem = ({
   }
   function changeName(e) {
     const id = e.target.closest(".list-item").dataset.id;
-    console.log(id);
+    // console.log(id);
+  }
+
+  function handleSelection(e) {
+    if (
+      e.target.classList.contains("btn-remove-item") ||
+      e.target.classList.contains("list-img")
+    )
+      return;
+    const id = e.target.closest(".list-item").dataset.id;
+    console.log(e.target);
+    setList(
+      list.map((item) => {
+        if (item.id === id) {
+          item.isSelected = !item.isSelected;
+          return item;
+        }
+        return item;
+      })
+    );
   }
   function handleRemoveItem(e) {
     const id = e.target.closest(".list-item").dataset.id;
     setList(list.filter((item) => item.id !== id));
 
     setSelect(Array.from(new Set(list.map((item) => item.name))));
-    console.log(select);
+    // console.log(select);
   }
   return (
-    <li data-id={itemData.id} className="list-item">
+    <li
+      onClick={handleSelection}
+      data-id={itemData.id}
+      className={
+        !itemData.isSelected ? "list-item" : "list-item list-item-selected"
+      }
+      style={{ opacity: itemData.isMutable ? 1 : 0.8 }}
+    >
       <div
         onClick={toggleMutability}
         className={
@@ -107,6 +133,7 @@ const ListItem = ({
         onKeyPress={submitId}
         onChange={changingId}
         autoFocus
+        placeholder={itemData.productId}
         maxLength="3"
       />
       <div className="product-name">
@@ -125,6 +152,7 @@ const ListItem = ({
           className="input-product-feild"
           onKeyPress={submitName}
           onChange={changingName}
+          placeholder={itemData.name}
           type="text"
         />
         <button onClick={handleRemoveItem} className="btn-remove-item">

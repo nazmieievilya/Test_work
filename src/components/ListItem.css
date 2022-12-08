@@ -17,6 +17,12 @@
   transition: all 0.05s;
   border-left: 5px solid black;
 }
+.list-item-selected {
+  background-color: #b7b7b7;
+  transition: all 0.05s;
+  border-left: 5px solid black;
+}
+
 .img-selected {
   opacity: 0.5;
 }
@@ -48,6 +54,17 @@
   align-items: center;
   gap: 5px;
   position: relative;
+}
+
+.id::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(0, 0, 0);
+  opacity: 1; /* Firefox */
+}
+.input-product-feild::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(0, 0, 0);
+  opacity: 1; /* Firefox */
 }
 .list-img {
   width: 20px;
@@ -98,4 +115,7 @@
 
 .product-name:hover .dropdown-container {
   display: grid;
+}
+.notAccesseble {
+  opacity: 0.7;
 }
